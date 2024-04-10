@@ -5,6 +5,10 @@ const dotenv = require("dotenv");
 dotenv.config();
 const userService = require("./user-service.js");
 
+const jwt = require('jsonwebtoken');
+const passport = require("passport");
+const passportJWT = require("passport-jwt");
+
 let JWT_SecretKey = process.env.JWT_SECRET;
 
 const HTTP_PORT = process.env.PORT || 8080;
@@ -14,7 +18,7 @@ let JwtStrategy = passportJWT.Strategy;
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-    secretOrKey: JWT_SecretKey,
+    secretOrKey: process.env.JWT_SecretKey,
 };
   
 let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
