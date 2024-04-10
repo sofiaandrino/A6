@@ -18,7 +18,7 @@ let JwtStrategy = passportJWT.Strategy;
 
 let jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('jwt'),
-    secretOrKey: process.env.JWT_SecretKey,
+    secretOrKey: JWT_SecretKey,
 };
   
 let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
